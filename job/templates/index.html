@@ -1,0 +1,388 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'navigation.html' %}
+
+<style>
+    .container{
+        max-width: 90%
+    }
+
+    .content{
+        text-align: center;
+        position: absolute;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        color: white;
+        height: 30px;
+        width: 91%
+    }
+
+    .hero-section {
+        position: relative;
+        height: 600px;
+        overflow: hidden;
+    }
+
+    .hero-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+
+    .hero-section:hover .hero-image {
+        transform: scale(1.05);
+    }
+
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hero-content {
+        text-align: center;
+        color: white;
+        max-width: 800px;
+        padding: 0 20px;
+        transform: translateY(0);
+        transition: transform 0.3s ease;
+    }
+
+    .hero-section:hover .hero-content {
+        transform: translateY(-10px);
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        animation: fadeInUp 1s ease;
+    }
+
+    .hero-subtitle {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        animation: fadeInUp 1s ease 0.2s;
+        opacity: 0;
+        animation-fill-mode: forwards;
+    }
+
+    .hero-buttons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        animation: fadeInUp 1s ease 0.4s;
+        opacity: 0;
+        animation-fill-mode: forwards;
+    }
+
+    .hero-btn {
+        padding: 12px 30px;
+        font-size: 1.1rem;
+        border-radius: 30px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-weight: 600;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        border: 2px solid #007bff;
+    }
+
+    .btn-outline {
+        background-color: transparent;
+        color: white;
+        border: 2px solid white;
+    }
+
+    .hero-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+
+    .btn-outline:hover {
+        background-color: rgba(255,255,255,0.1);
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .placed-students-section {
+        background-color: #f8f9fa;
+        padding: 60px 0;
+        margin-top: 2%;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 50px;
+        position: relative;
+        text-align: center;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: #007bff;
+        border-radius: 2px;
+    }
+
+    .company-card {
+        background: white;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .company-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .company-logo {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        border: 3px solid #007bff;
+        padding: 5px;
+        transition: transform 0.3s ease;
+    }
+
+    .company-card:hover .company-logo {
+        transform: scale(1.1);
+    }
+
+    .company-name {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 10px;
+    }
+
+    .company-stats {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+    }
+
+    .stat-item {
+        text-align: center;
+    }
+
+    .stat-number {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #007bff;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+        color: #6c757d;
+    }
+</style>
+
+<div class="hero-section">
+    <img src="{% static 'images/man-search-hiring-job-online-from-laptop_1150-52728.avif' %}" class="hero-image" alt="Job Portal Hero">
+    <div class="hero-overlay">
+        <div class="hero-content">
+            <h1 class="hero-title">Welcome to ICEM Job Portal</h1>
+            <p class="hero-subtitle">Your Gateway to Career Success and Professional Growth</p>
+            <div class="hero-buttons">
+                <!-- <a href="#" class="hero-btn btn-primary">Find Jobs</a> -->
+                <!-- <a href="#" class="hero-btn btn-outline">Learn More</a> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="placed-students-section">
+    <div class="container">
+        <h1 class="section-title">Our Placed Students</h1>
+        
+        <div class="row">
+            <div class="col-md-3">
+                <div class="company-card">
+                    <img src="{% static 'images/f.jpg' %}" class="company-logo" alt="Facebook">
+                    <h3 class="company-name">Facebook</h3>
+                    <div class="company-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Students</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">₹12L</div>
+                            <div class="stat-label">Avg. Package</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="company-card">
+                    <img src="{% static 'images/f4.jpg' %}" class="company-logo" alt="Facebook">
+                    <h3 class="company-name">Facebook</h3>
+                    <div class="company-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">45+</div>
+                            <div class="stat-label">Students</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">₹11L</div>
+                            <div class="stat-label">Avg. Package</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="company-card">
+                    <img src="{% static 'images/f1.png' %}" class="company-logo" alt="Facebook">
+                    <h3 class="company-name">Facebook</h3>
+                    <div class="company-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">40+</div>
+                            <div class="stat-label">Students</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">₹10L</div>
+                            <div class="stat-label">Avg. Package</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="company-card">
+                    <img src="{% static 'images/f3.jpg' %}" class="company-logo" alt="Amazon">
+                    <h3 class="company-name">Amazon</h3>
+                    <div class="company-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">60+</div>
+                            <div class="stat-label">Students</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">₹15L</div>
+                            <div class="stat-label">Avg. Package</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="company-card">
+                    <img src="{% static 'images/f5.png' %}" class="company-logo" alt="LinkedIn">
+                    <h3 class="company-name">LinkedIn</h3>
+                    <div class="company-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">35+</div>
+                            <div class="stat-label">Students</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">₹14L</div>
+                            <div class="stat-label">Avg. Package</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="company-card">
+                    <img src="{% static 'images/f6.png' %}" class="company-logo" alt="Infosys">
+                    <h3 class="company-name">Infosys</h3>
+                    <div class="company-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">100+</div>
+                            <div class="stat-label">Students</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">₹8L</div>
+                            <div class="stat-label">Avg. Package</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="company-card">
+                    <img src="{% static 'images/f7.png' %}" class="company-logo" alt="Amazon">
+                    <h3 class="company-name">Amazon</h3>
+                    <div class="company-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">55+</div>
+                            <div class="stat-label">Students</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">₹13L</div>
+                            <div class="stat-label">Avg. Package</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="company-card">
+                    <img src="{% static 'images/f8.jpg' %}" class="company-logo" alt="HCL">
+                    <h3 class="company-name">HCL</h3>
+                    <div class="company-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">80+</div>
+                            <div class="stat-label">Students</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">₹7L</div>
+                            <div class="stat-label">Avg. Package</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'footer.html' %}
+
+{% endblock %}

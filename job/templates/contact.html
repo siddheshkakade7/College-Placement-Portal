@@ -1,0 +1,216 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'navigation.html' %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.6.3/css/all.css">
+
+<style>
+    .contact-section {
+        padding: 80px 0;
+        background-color: #f8f9fa;
+    }
+
+    .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+        position: relative;
+    }
+
+    .section-title h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 20px;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: #007bff;
+        border-radius: 2px;
+    }
+
+    .contact-card {
+        background: white;
+        border-radius: 15px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        text-align: center;
+        height: 100%;
+    }
+
+    .contact-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .contact-icon {
+        font-size: 2.5rem;
+        color: #007bff;
+        margin-bottom: 20px;
+        transition: transform 0.3s ease;
+    }
+
+    .contact-card:hover .contact-icon {
+        transform: scale(1.2);
+    }
+
+    .contact-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 15px;
+    }
+
+    .contact-info {
+        font-size: 1.1rem;
+        color: #6c757d;
+        line-height: 1.6;
+    }
+
+    .contact-form-section {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-top: 50px;
+    }
+
+    .form-title {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .form-control {
+        border-radius: 8px;
+        padding: 12px;
+        border: 1px solid #dee2e6;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    .submit-btn {
+        background-color: #007bff;
+        color: white;
+        padding: 12px 30px;
+        border-radius: 30px;
+        border: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .submit-btn:hover {
+        background-color: #0056b3;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate {
+        animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .delay-1 {
+        animation-delay: 0.2s;
+    }
+
+    .delay-2 {
+        animation-delay: 0.4s;
+    }
+
+    .delay-3 {
+        animation-delay: 0.6s;
+    }
+</style>
+
+<div class="contact-section">
+    <div class="container">
+        <div class="section-title">
+            <h1>Contact Us</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 animate">
+                <div class="contact-card">
+                    <i class="fas fa-phone-square contact-icon"></i>
+                    <h3 class="contact-title">Phone</h3>
+                    <p class="contact-info">+91 1234567890</p>
+                </div>
+            </div>
+
+            <div class="col-md-3 animate delay-1">
+                <div class="contact-card">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    <h3 class="contact-title">Email</h3>
+                    <p class="contact-info">indiraicem@gmail.com</p>
+                </div>
+            </div>
+
+            <div class="col-md-3 animate delay-2">
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt contact-icon"></i>
+                    <h3 class="contact-title">Address</h3>
+                    <p class="contact-info">Indira College Of Engineering & Management, PUNE</p>
+                </div>
+            </div>
+
+            <div class="col-md-3 animate delay-3">
+                <div class="contact-card">
+                    <i class="far fa-clock contact-icon"></i>
+                    <h3 class="contact-title">Office Hours</h3>
+                    <p class="contact-info">10:00 A.M. to 6:00 P.M.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-form-section">
+            <h2 class="form-title">Send us a Message</h2>
+            <form>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <input type="text" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <input type="email" class="form-control" placeholder="Your Email" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control" placeholder="Subject" required>
+                </div>
+                <div class="mb-3">
+                    <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
